@@ -1,7 +1,7 @@
 import copy
 import math
 
-from golden_section_method import *
+import golden_section_method
 
 
 # Вычисление нормы
@@ -24,11 +24,11 @@ def RosenbrockMethod(function, X, S1, S2, EPS):
     while True:
         X0 = copy.copy(X)
 
-        L1 = goldenSection(function, -1, X, S1, EPS)
+        L1 = golden_section_method.goldenSection(function, -1, X, S1, EPS)
         X[0] = X0[0] + L1 * S1[0]
         X[1] = X0[1] + L1 * S1[1]
 
-        L2 = goldenSection(function, 0, X, S2, EPS)
+        L2 = golden_section_method.goldenSection(function, 0, X, S2, EPS)
         X[0] = X[0] + L2 * S2[0]
         X[1] = X[1] + L2 * S2[1]
 
@@ -52,8 +52,6 @@ def RosenbrockMethod(function, X, S1, S2, EPS):
         S2[0] = B[0] / findNorm(B)
         S2[1] = B[1] / findNorm(B)
         iter = iter + 1
-
-        func = function(X[0], X[1])
 
         if exitCondition(function, X, X0, EPS):
             break
