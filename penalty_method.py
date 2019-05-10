@@ -22,6 +22,7 @@ def second_restriction(x, y):
 def g(x, y):
     return 100*(x - y + 1)
 
+
 # третье огрнаичение
 def third_restriction_1(x, y):
     return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 1)   # 2n
@@ -44,11 +45,13 @@ def third_restriction_6(x, y):
 def third_restriction_7(x, y):
     return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 7)   # 2n
 
+
 # ограничение для барьерной функции
 def barrier_restriction(x, y):
     if g(x, y) <= 0:
-        return -1 / g(x, y)
+        #return -1 / g(x, y)
         #return -1E-5 * math.log(-g(x, y))
+        return -math.log(-g(x, y))
     else:
         return math.inf
 
@@ -66,6 +69,7 @@ def findMinWithRestriction(f, restriction, x_0, r_0, C_0, eps):
     return res, 100
         
 
+# главная функция
 def main():
     X_min_1 = findMinWithRestriction(f, first_restriction, X_0, 10, 10, EPS)
     print(X_min_1)
