@@ -9,14 +9,14 @@ r_0 = 1
 
 
 # первое ограничение
-def first_restriction(x, y):
+def first_penalty_restriction(x, y):
     if (y - x >= -1):
         return 0
     else:
         return -(y - x - 1)
 
 # второе ограничение
-def second_restriction(x, y):
+def second_penalty_restriction(x, y):
     return abs(x + y)
 
 def g(x, y):
@@ -24,36 +24,43 @@ def g(x, y):
 
 
 # третье огрнаичение
-def third_restriction_1(x, y):
+def third_penalty_restriction_1(x, y):
     return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 1)   # 2n
 
-def third_restriction_2(x, y):
+def third_penalty_restriction_2(x, y):
     return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 2)   # 2n
 
-def third_restriction_3(x, y):
+def third_penalty_restriction_3(x, y):
     return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 3)   # 2n
 
-def third_restriction_4(x, y):
+def third_penalty_restriction_4(x, y):
     return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 4)   # 2n
 
-def third_restriction_5(x, y):
+def third_penalty_restriction_5(x, y):
     return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 5)   # 2n
 
-def third_restriction_6(x, y):
+def third_penalty_restriction_6(x, y):
     return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 6)   # 2n
 
-def third_restriction_7(x, y):
+def third_penalty_restriction_7(x, y):
     return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 7)   # 2n
 
 
 # ограничение для барьерной функции
-def barrier_restriction(x, y):
+def first_barrier_restriction(x, y):
     if g(x, y) <= 0:
-        #return -1 / g(x, y)
         #return -1E-5 * math.log(-g(x, y))
         return -math.log(-g(x, y))
     else:
         return math.inf
+    
+# ограничение для барьерной функции
+def second_barrier_restriction(x, y):
+    if g(x, y) <= 0:
+        return -1 / g(x, y)
+    else:
+        return math.inf
+
 
 # функция, для которой необходимо найти минимум    
 def f(x, y):
@@ -71,32 +78,36 @@ def findMinWithRestriction(f, restriction, x_0, r_0, C_0, eps):
 
 # главная функция
 def main():
-    X_min_1 = findMinWithRestriction(f, first_restriction, X_0, 10, 10, EPS)
+    print("\nCheck penalty method with two different restrictions: ")
+    X_min_1 = findMinWithRestriction(f, first_penalty_restriction, X_0, 10, 10, EPS)
     print(X_min_1)
-    X_min_2 = findMinWithRestriction(f, second_restriction, X_0, 10, 10, EPS)
+    X_min_2 = findMinWithRestriction(f, second_penalty_restriction, X_0, 10, 10, EPS)
     print(X_min_2)
     print()
     
-    ###########################################################################
-    X_min_3 = findMinWithRestriction(f, third_restriction_1, X_0, 10, 10, EPS)
+    print("Penalty change strategy for n = 1..7:")
+    X_min_3 = findMinWithRestriction(f, third_penalty_restriction_1, X_0, 10, 10, EPS)
     print(X_min_3)
-    X_min_4 = findMinWithRestriction(f, third_restriction_2, X_0, 10, 10, EPS)
+    X_min_4 = findMinWithRestriction(f, third_penalty_restriction_2, X_0, 10, 10, EPS)
     print(X_min_4)
-    X_min_5 = findMinWithRestriction(f, third_restriction_3, X_0, 10, 10, EPS)
+    X_min_5 = findMinWithRestriction(f, third_penalty_restriction_3, X_0, 10, 10, EPS)
     print(X_min_5)
-    X_min_6 = findMinWithRestriction(f, third_restriction_4, X_0, 10, 10, EPS)
+    X_min_6 = findMinWithRestriction(f, third_penalty_restriction_4, X_0, 10, 10, EPS)
     print(X_min_6)
-    X_min_7 = findMinWithRestriction(f, third_restriction_5, X_0, 10, 10, EPS)
+    X_min_7 = findMinWithRestriction(f, third_penalty_restriction_5, X_0, 10, 10, EPS)
     print(X_min_7)
-    X_min_8 = findMinWithRestriction(f, third_restriction_6, X_0, 10, 10, EPS)
+    X_min_8 = findMinWithRestriction(f, third_penalty_restriction_6, X_0, 10, 10, EPS)
     print(X_min_8)
-    X_min_9 = findMinWithRestriction(f, third_restriction_7, X_0, 10, 10, EPS)
+    X_min_9 = findMinWithRestriction(f, third_penalty_restriction_7, X_0, 10, 10, EPS)
     print(X_min_9)
     print()
-    ###########################################################################
     
-    X_min_barrier = findMinWithRestriction(f, barrier_restriction, X_0, 0.1, 0.1, EPS)
-    print(X_min_barrier)
+    print("Check barrier method with two different restrictions: ")
+    X_min_barrier_1 = findMinWithRestriction(f, first_barrier_restriction, X_0, 0.1, 0.1, EPS)
+    print(X_min_barrier_1)
+    X_min_barrier_2 = findMinWithRestriction(f, second_barrier_restriction, X_0, 0.1, 0.1, EPS)
+    print(X_min_barrier_2)
+
     
 if __name__ == "__main__":
     main()
