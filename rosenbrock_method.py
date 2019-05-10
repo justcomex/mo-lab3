@@ -1,6 +1,5 @@
 import copy
 import math
-
 import golden_section_method
 
 
