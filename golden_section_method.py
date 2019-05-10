@@ -49,7 +49,6 @@ def searchSection(function, l0, X, S):
     f1 = function(X[0] + l1 * S[0], X[1] + l1 * S[1])
     l2 = l1 + h
     f2 = function(X[0] + l2 * S[0], X[1] + l2 * S[1])
-    iter = 0
     while f1 > f2:
         l0 = l1
         f0 = f1
@@ -58,5 +57,4 @@ def searchSection(function, l0, X, S):
         h = 2 * h
         l2 = l1 + h
         f2 = function(X[0] + l2 * S[0], X[1] + l2 * S[1])
-        iter = iter + 1
     return l0 - h / 2, l2

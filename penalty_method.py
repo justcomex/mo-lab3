@@ -25,25 +25,25 @@ def g(x, y):
 
 # третье огрнаичение
 def third_penalty_restriction_1(x, y):
-    return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 1)   # 2n
+    return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 1)   # 2n, n = 1
 
 def third_penalty_restriction_2(x, y):
-    return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 2)   # 2n
+    return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 2)   # 2n, n = 2
 
 def third_penalty_restriction_3(x, y):
-    return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 3)   # 2n
+    return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 3)   # 2n, n = 3
 
 def third_penalty_restriction_4(x, y):
-    return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 4)   # 2n
+    return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 4)   # 2n, n = 4
 
 def third_penalty_restriction_5(x, y):
-    return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 5)   # 2n
+    return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 5)   # 2n, n = 5
 
 def third_penalty_restriction_6(x, y):
-    return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 6)   # 2n
+    return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 6)   # 2n, n = 6
 
 def third_penalty_restriction_7(x, y):
-    return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 7)   # 2n
+    return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 7)   # 2n, n = 7
 
 
 # ограничение для барьерной функции
