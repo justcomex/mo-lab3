@@ -10,4 +10,3 @@ def findMinWithRestriction(f, restriction, x_0, r_0, C_0, eps):
             return res, restriction(res[0], res[1]), FUNC_CALC, i + 1
         r_0 *= C_0
     return res, restriction(res[0], res[1]), FUNC_CALC, 100
-        

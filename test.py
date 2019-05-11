@@ -1,10 +1,9 @@
 import math
 import penalty_method
-import rosenbrock_method
 
 
 EPS = 1E-7
-X_0 = [0, 1]
+X_0 = [0,1]
 
 
 # первое ограничение
@@ -12,17 +11,18 @@ def first_penalty_restriction(x, y):
     if (y - x >= -1):
         return 0
     else:
-        return -(y - x - 1)
+        return -(y - x + 1)
 
 # второе ограничение
 def second_penalty_restriction(x, y):
     return abs(x + y)
 
 def g(x, y):
-    return 100*(x - y + 1)
+    #return 100 * (x - y - 1)
+    return x - y - 1
 
 
-# третье огрнаичение
+# вариации третьего ограничения
 def third_penalty_restriction_1(x, y):
     return pow((g(x, y) + abs(g(x, y))) / 2.0, 2 * 1)   # 2n, n = 1
 
@@ -68,14 +68,11 @@ def f(x, y):
 
 # главная функция
 def main():
-    print("\nOptimization without penalties: ")
-    print(rosenbrock_method.RosenbrockMethod(f, X_0, [1, 0], [0, 1], EPS))
-    print()
     
     print("Check penalty method with two different restrictions: ")
-    X_min_1 = penalty_method.findMinWithRestriction(f, first_penalty_restriction, X_0, 10, 10, EPS)
+    X_min_1 = penalty_method.findMinWithRestriction(f, first_penalty_restriction, X_0, 30, 10, EPS)
     print(X_min_1)
-    X_min_2 = penalty_method.findMinWithRestriction(f, second_penalty_restriction, X_0, 10, 10, EPS)
+    X_min_2 = penalty_method.findMinWithRestriction(f, second_penalty_restriction, X_0, 5, 5, EPS)
     print(X_min_2)
     print()
     
@@ -97,9 +94,9 @@ def main():
     print()
     
     print("Check barrier method with two different restrictions: ")
-    X_min_barrier_1 = penalty_method.findMinWithRestriction(f, first_barrier_restriction, X_0, 0.1, 0.1, EPS)
+    X_min_barrier_1 = penalty_method.findMinWithRestriction(f, first_barrier_restriction, X_0, 1E-1, 1E-1, EPS)
     print(X_min_barrier_1)
-    X_min_barrier_2 = penalty_method.findMinWithRestriction(f, second_barrier_restriction, X_0, 0.1, 0.1, EPS)
+    X_min_barrier_2 = penalty_method.findMinWithRestriction(f, second_barrier_restriction, X_0, 1E-1, 1E-1, EPS)
     print(X_min_barrier_2)
 
     
