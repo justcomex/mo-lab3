@@ -17,17 +17,19 @@ def exitCondition(function, X1, X0, EPS):
 
 # Метод Розенброка
 def RosenbrockMethod(function, X, S1, S2, EPS):
+    FUNC_CALC = 0
     A = [[0, 0], [0, 0]]
     B = [0, 0]
-    iter = 0
     while True:
         X0 = copy.copy(X)
 
-        L1 = golden_section_method.goldenSection(function, -1, X, S1, EPS)
+        L1, func_calc_L1 = golden_section_method.goldenSection(function, -1, X, S1, EPS)
+        FUNC_CALC += func_calc_L1
         X[0] = X0[0] + L1 * S1[0]
         X[1] = X0[1] + L1 * S1[1]
 
-        L2 = golden_section_method.goldenSection(function, 0, X, S2, EPS)
+        L2, func_calc_L2 = golden_section_method.goldenSection(function, 0, X, S2, EPS)
+        FUNC_CALC += func_calc_L2
         X[0] = X[0] + L2 * S2[0]
         X[1] = X[1] + L2 * S2[1]
 
@@ -50,8 +52,7 @@ def RosenbrockMethod(function, X, S1, S2, EPS):
 
         S2[0] = B[0] / findNorm(B)
         S2[1] = B[1] / findNorm(B)
-        iter = iter + 1
 
         if exitCondition(function, X, X0, EPS):
             break
-    return X
+    return X, FUNC_CALC

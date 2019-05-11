@@ -1,9 +1,10 @@
 import math
 import penalty_method
+import rosenbrock_method
 
 
 EPS = 1E-7
-X_0 = [-1, 0]
+X_0 = [0, 1]
 
 
 # первое ограничение
@@ -67,7 +68,11 @@ def f(x, y):
 
 # главная функция
 def main():
-    print("\nCheck penalty method with two different restrictions: ")
+    print("\nOptimization without penalties: ")
+    print(rosenbrock_method.RosenbrockMethod(f, X_0, [1, 0], [0, 1], EPS))
+    print()
+    
+    print("Check penalty method with two different restrictions: ")
     X_min_1 = penalty_method.findMinWithRestriction(f, first_penalty_restriction, X_0, 10, 10, EPS)
     print(X_min_1)
     X_min_2 = penalty_method.findMinWithRestriction(f, second_penalty_restriction, X_0, 10, 10, EPS)
